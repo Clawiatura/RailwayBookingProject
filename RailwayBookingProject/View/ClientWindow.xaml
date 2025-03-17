@@ -22,42 +22,31 @@
             <RowDefinition/>
 
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0"
-            materialDesign:HintAssist.Hint="FirstName" Margin="50 20">
+        <TextBox x:Name="Name" Grid.Row="0"
+            materialDesign:HintAssist.Hint="Имя" Margin="50 20" TextChanged="TextBox_TextChanged">
             <TextBox.Text>
-         <Binding Path="Firstname" UpdateSourceTrigger="PropertyChanged">
+         <Binding Path="Фамилия" UpdateSourceTrigger="PropertyChanged">
          </Binding>
      </TextBox.Text>
         </TextBox>
-        <TextBox Grid.Row="1"
-            materialDesign:HintAssist.Hint="LastName" Margin="50 20">
+        <TextBox x:Name="Familly" Grid.Row="1"
+            materialDesign:HintAssist.Hint="Фамилия" Margin="50 20">
             <TextBox.Text>
                 <Binding Path="Firstname" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox Grid.Row="2"
+        <TextBox x:Name="Email" Grid.Row="2"
             materialDesign:HintAssist.Hint="Email" Margin="50 20">
             <TextBox.Text>
                 <Binding Path="Firstname" UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox Grid.Row="3"
-            materialDesign:HintAssist.Hint="Password" Margin="50 20">
-            <TextBox.Text>
-                <Binding Path="Firstname" UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox Grid.Row="4"
-     materialDesign:HintAssist.Hint="
-Repeat password" Margin="50 20">
-            <TextBox.Text>
-                <Binding Path="Firstname" UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+        <PasswordBox x:Name="Password" Grid.Row="3"
+             materialDesign:HintAssist.Hint="Password" Margin="50 20">
+            
+        </PasswordBox>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace RailwayBookingProject.View
 {
-    /// <summary>
-    /// Логика взаимодействия для JoinClient.xaml
-    /// </summary>
+    
     public partial class JoinClient : Window
     {
         public JoinClient()
