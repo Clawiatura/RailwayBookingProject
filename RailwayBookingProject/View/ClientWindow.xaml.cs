@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using static MaterialDesignThemes.Wpf.Theme;
+
 
 namespace RailwayBookingProject.View
 {
@@ -30,42 +32,59 @@ namespace RailwayBookingProject.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private  void Button_Click(object sender, RoutedEventArgs e)
         {
             string firstName = Name.Text; 
             string lastName = Familly.Text;   
             string email = Email.Text;       
-            string password = Password.Password; 
+            string password = Password.Password;
 
-            await RegisterUser(firstName, lastName, email, password);
+            Task.Run(() => RegisterUser(firstName, lastName, email, password));
         }
+         
 
         private async Task RegisterUser(string firstName, string lastName, string email, string password)
         {
+
             using (var client = new HttpClient())
             {
                 try
                 {
+                    var emailCheckResponse = await client.GetAsync($"http://127.0.0.1:8888/api/checkemail?email={WebUtility.UrlEncode(email)}"); 
+
+                    if (!emailCheckResponse.IsSuccessStatusCode)
+                    {
+                        
+
+                        if (emailCheckResponse.StatusCode == HttpStatusCode.Conflict) 
+                        {
+                            MessageBox.Show("Пользователь с таким email уже зарегистрирован", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        
+
+                    }
                     var data = new
                     {
-                        firstName = firstName,
-                        lastName = lastName,
-                        email = email,
-                        password = password
+                        Имя = firstName,
+                        Фамилия = lastName,
+                        Email = email,
+                        PasswordHash = password
                     };
 
                     var json = JsonConvert.SerializeObject(data);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    content.Headers.Add("table", "clients");
 
                     var response = await client.PostAsync("http://127.0.0.1:8888/api", content);
                     response.EnsureSuccessStatusCode();
                     
                     var responseString = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("Успешная регистрация: " + responseString);
-                    this.Close();
+                    
 
                     
                 }

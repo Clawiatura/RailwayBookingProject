@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:RailwayBookingProject" xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Бронирование железнодорожных билетов" Height="1000" Width="2000">
+        Title="Бронирование железнодорожных билетов" Height="1000" Width="2000" WindowState="Maximized">
 
     <Window.Background>
         <ImageBrush ImageSource="C:\Users\maksi\source\repos\RailwayBookingProject-master\RailwayBookingProject\Photo\Project.jpg" />

@@ -46,15 +46,15 @@ namespace RailwayBookingProject.Model
                 OnProperyChanged(nameof(Lastname));
             }
         }
-        private string imail;
-        [JsonPropertyName("imail")]
-        public string Imail
+        private string email;
+        [JsonPropertyName("email")]
+        public string Email
         {
-            get => imail;
+            get => email;
             set
             {
-                imail = value;
-                OnProperyChanged(nameof(Imail));
+                email = value;
+                OnProperyChanged(nameof(Email));
             }
         }
         private string phone;
