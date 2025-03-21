@@ -1,0 +1,22 @@
+﻿<Window x:Class="RailwayBookingProject.ViewModel.Search"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Найденные билеты" Height="450" Width="800">
+    <Grid>
+        <ItemsControl x:Name="TicketsItemsControl">
+            <!-- ItemsControl для списка билетов -->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <!-- Добавьте Margin для отступов -->
+                        <TextBlock Text="{Binding DepartureCity, StringFormat='Отправление: {0}'}"/>
+                        <TextBlock Text="{Binding ArrivalCity, StringFormat='Назначение: {0}'}"/>
+                        <TextBlock Text="{Binding DepartureDate, StringFormat='Дата: {0:d}'}"/>
+                        <TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}"/>
+                        <!-- Добавьте другие свойства билета, которые нужно отобразить -->
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>

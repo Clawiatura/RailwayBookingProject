@@ -22,5 +22,17 @@ namespace RailwayBookingProject {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string JwtToken {
+            get {
+                return ((string)(this["JwtToken"]));
+            }
+            set {
+                this["JwtToken"] = value;
+            }
+        }
     }
 }

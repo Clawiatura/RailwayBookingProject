@@ -38,23 +38,20 @@
                 </Border.RenderTransform>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="1177">
 
-                    <TextBox
+                    <TextBox x:Name="Otkuda"
                  materialDesign:HintAssist.Hint="Откуда" Width="150" Opacity="0.5" Margin="30 20" Foreground="Black" FontSize="18" Text="{Binding Откуда, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock Text="➔" VerticalAlignment="Center"/>
 
-                    <TextBox
+                    <TextBox x:Name="Kuda"
                  materialDesign:HintAssist.Hint="Куда" Width="150" Opacity="0.5" Margin="50 20"  FontSize="18" Text="{Binding Куда, UpdateSourceTrigger=PropertyChanged}"/>
 
 
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Туда" Margin="5,0,0,0"  FontSize="16" Foreground="Black" />
-                        <DatePicker Width="130" Margin="10" SelectedDate="{Binding DepartureDate}" />
+                        <TextBlock Text="Дата" Margin="5,0,0,0"  FontSize="16" Foreground="Black" />
+                        <DatePicker x:Name="Data" Width="130" Margin="10" SelectedDate="{Binding DepartureDate}" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Обратно" Margin="5,0,0,0" FontSize="16" Foreground="Black"/>
-                        <DatePicker Width="130" Margin="10" SelectedDate="{Binding ReturnDate}" />
-                    </StackPanel>
+                    <StackPanel Orientation="Vertical"/>
                     <ComboBox Width="150" Height="31" RenderTransformOrigin="0.523,1.324" >
                         <TextBlock Text="Пассажиры" FontSize="14" Foreground="Gray" Margin="0,0,0,5"/>
                         <ComboBoxItem Content="1 пассажир, эконом" />

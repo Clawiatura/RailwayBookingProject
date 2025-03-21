@@ -1,5 +1,6 @@
 ﻿
 using k8s.KubeConfigModels;
+
 using RailwayBookingProject.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YamlDotNet.Serialization;
 
 namespace RailwayBookingProject.View
 {
@@ -29,13 +31,13 @@ namespace RailwayBookingProject.View
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string username = login.Text; 
+            string email = Email.Text; 
             string password = Password.Password; 
 
 
             using (var client = new HttpClient())
             {
-                var credentials = new UserCredentials { UserName = username, Password = password };
+                var credentials = new UserCredentials { UserName = email, Password = password };
                 var json = JsonSerializer.Serialize(credentials);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -44,7 +46,7 @@ namespace RailwayBookingProject.View
 
 
                 {
-                    var response = await client.PostAsync("YOUR_AUTH_ENDPOINT", content); // Замените YOUR_AUTH_ENDPOINT на ваш URL
+                    var response = await client.PostAsync("http://127.0.0.1:8888/api", content); 
                     if (response.IsSuccessStatusCode)
                     {
 
@@ -52,12 +54,14 @@ namespace RailwayBookingProject.View
 
 
                         
-                        Properties.Settings.Default.JwtToken = jwtToken;
+                        Settings1.Default.JwtToken = jwtToken;
+                        Settings1.Default.Save();
 
-                        Properties.Settings.Default.Save();
 
 
-                        // Откройте личный кабинет
+
+
+                        
                         Личный_Кабинет personalCabinetWindow = new Личный_Кабинет();
 
 
@@ -69,7 +73,7 @@ namespace RailwayBookingProject.View
                     {
 
 
-                        MessageBox.Show("Неверный логин или пароль.");
+                        MessageBox.Show("Неверный email или пароль.");
 
 
                     }
@@ -113,7 +117,7 @@ namespace RailwayBookingProject.View
             bool? result = personalAccountWindow.ShowDialog();
             if(result == true)
             {
-                //добавление данных в БД
+                
                 this.Close();
             }
 

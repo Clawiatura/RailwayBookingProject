@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TravelApp"
+        
         mc:Ignorable="d"
         Title="Travel App" Height="450" Width="800">
     <Grid>
@@ -11,33 +11,33 @@
             <TabItem Header="История поездок">
                 <DataGrid x:Name="TripsDataGrid" ItemsSource="{Binding Trips}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <!-- Добавьте столбцы для данных о поездках -->
+                        
                         <DataGridTextColumn Header="Место назначения" Binding="{Binding Destination}" />
                         <DataGridTextColumn Header="Дата начала" Binding="{Binding StartDate}" />
                         <DataGridTextColumn Header="Дата окончания" Binding="{Binding EndDate}" />
-                        <!-- ... другие столбцы -->
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Бронирование">
-                <!-- Элементы управления для бронирования -->
+                
                 <StackPanel>
-                    <DataGrid x:Name="" ItemsSource="{Binding Trips}" AutoGenerateColumns="False">
+                    <DataGrid  ItemsSource="{Binding Trips}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <!-- Добавьте столбцы для данных о поездках -->
+                            
                             <DataGridTextColumn Header="Место отправки" Binding="{Binding Destination}" />
                             <DataGridTextColumn Header="Место прибытия" Binding="{Binding Destination}" />
                             <DataGridTextColumn Header="Дата начала поездки" Binding="{Binding StartDate}" />
                             <DataGridTextColumn Header="Дата окончания" Binding="{Binding EndDate}" />
                             <DataGridTextColumn Header="Цена" Binding="{Binding Destination}" />
-                            <!-- ... другие столбцы -->
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button Content="Отменить бронирование" Command="{Binding BookTripCommand}" Margin="50"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Личные данные">
-                <!-- Элементы управления для личных данных -->
+                
                 <StackPanel>
                     <Label Content="Имя:" />
                     <TextBox Text="{Binding FirstName}" />
@@ -45,7 +45,7 @@
                     <TextBox Text="{Binding LastName}" />
                     <Label Content="Email:" />
                     <TextBox Text="{Binding LastName}" />
-                    <!-- ... другие поля для личных данных -->
+                    
                     <Button Content="Сохранить" Command="{Binding SavePersonalDataCommand}" />
 
                 </StackPanel>

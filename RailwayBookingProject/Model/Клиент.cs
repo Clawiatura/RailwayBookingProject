@@ -83,6 +83,7 @@ namespace RailwayBookingProject.Model
 
         private void Register()
         {
+            throw new NotImplementedException();
         }
     }
 
