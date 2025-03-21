@@ -1,7 +1,12 @@
-﻿using System;
+﻿
+using k8s.KubeConfigModels;
+using RailwayBookingProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,10 +27,83 @@ namespace RailwayBookingProject.View
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            string username = login.Text; 
+            string password = Password.Password; 
 
+
+            using (var client = new HttpClient())
+            {
+                var credentials = new UserCredentials { UserName = username, Password = password };
+                var json = JsonSerializer.Serialize(credentials);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+                try
+
+
+                {
+                    var response = await client.PostAsync("YOUR_AUTH_ENDPOINT", content); // Замените YOUR_AUTH_ENDPOINT на ваш URL
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        string jwtToken = await response.Content.ReadAsStringAsync();
+
+
+                        
+                        Properties.Settings.Default.JwtToken = jwtToken;
+
+                        Properties.Settings.Default.Save();
+
+
+                        // Откройте личный кабинет
+                        Личный_Кабинет personalCabinetWindow = new Личный_Кабинет();
+
+
+                        personalCabinetWindow.Show();
+                        this.Close();
+
+                    }
+                    else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    {
+
+
+                        MessageBox.Show("Неверный логин или пароль.");
+
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show($"Ошибка: {response.StatusCode}");
+
+
+                        string errorMessage = await response.Content.ReadAsStringAsync();
+
+                        MessageBox.Show($"Ошибка: {errorMessage}");
+
+
+
+                    }
+
+
+
+                }
+
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Ошибка: {ex.Message}");
+
+                }
+
+
+
+
+            }
         }
+
 
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

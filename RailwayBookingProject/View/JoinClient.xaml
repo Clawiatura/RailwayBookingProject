@@ -16,8 +16,8 @@
                    Margin="0,0,0,40"
                    Width="216"/>
 
-            <TextBox Margin="0,0,0,10" materialDesign:HintAssist.Hint="Логин"/>
-            <PasswordBox  Margin="0,0,0,10" materialDesign:HintAssist.Hint="Пароль"/>
+            <TextBox x:Name="login" Margin="0,0,0,10" materialDesign:HintAssist.Hint="Логин"/>
+            <PasswordBox x:Name="Password"  Margin="0,0,0,10" materialDesign:HintAssist.Hint="Пароль"/>
 
             <TextBlock Text="Не помню пароль" Foreground="Blue" HorizontalAlignment="Right" Margin="0,0,0,5" Cursor="Hand"/>
 
