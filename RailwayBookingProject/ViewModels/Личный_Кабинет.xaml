@@ -1,0 +1,55 @@
+﻿<Window x:Class="RailwayBookingProject.ViewModel.Личный_Кабинет"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        mc:Ignorable="d"
+        Title="Travel App" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="История поездок">
+                <DataGrid x:Name="TripsDataGrid" ItemsSource="{Binding Trips}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        
+                        <DataGridTextColumn Header="Место назначения" Binding="{Binding Destination}" />
+                        <DataGridTextColumn Header="Дата начала" Binding="{Binding StartDate}" />
+                        <DataGridTextColumn Header="Дата окончания" Binding="{Binding EndDate}" />
+                        
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Бронирование">
+                
+                <StackPanel>
+                    <DataGrid  ItemsSource="{Binding Trips}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            
+                            <DataGridTextColumn Header="Место отправки" Binding="{Binding Destination}" />
+                            <DataGridTextColumn Header="Место прибытия" Binding="{Binding Destination}" />
+                            <DataGridTextColumn Header="Дата начала поездки" Binding="{Binding StartDate}" />
+                            <DataGridTextColumn Header="Дата окончания" Binding="{Binding EndDate}" />
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Destination}" />
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Отменить бронирование" Command="{Binding BookTripCommand}" Margin="50"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Личные данные">
+                
+                <StackPanel>
+                    <Label Content="Имя:" />
+                    <TextBox Text="{Binding FirstName}" />
+                    <Label Content="Фамилия:" />
+                    <TextBox Text="{Binding LastName}" />
+                    <Label Content="Email:" />
+                    <TextBox Text="{Binding LastName}" />
+                    
+                    <Button Content="Сохранить" Command="{Binding SavePersonalDataCommand}" />
+
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
